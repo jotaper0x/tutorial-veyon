@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Veyon: Uso</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4facfe;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #00f2fe;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin: 25px 0 15px 0;
+            padding-left: 15px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        li strong {
+            color: #2c3e50;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .note {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-left: 5px solid #ff6b6b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .note p {
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4facfe;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Centraliza figuras e legendas */
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto;
+    max-width: 90%;
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+}
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteúdo para artigo Joomla -->
+    <div class="container">
+        <div class="header">
+            <h1>Tutorial Veyon: Uso</h1>
+            <p>Guia completo para monitoramento e gerenciamento de computadores em ambientes educacionais ou corporativos</p>
+        </div>
+        <div class="content">
+            <p>Este tutorial aborda o uso do Veyon para monitoramento e gerenciamento de computadores em ambientes educacionais ou corporativos. Focaremos nas funcionalidades principais da interface e no gerenciamento de salas.</p>
+
+            <h2>1 Interface do Veyon</h2>
+            <p>Com o Veyon Master devidamente configurado, o próximo passo é conhecer a sua interface. Para isso, execute o programa clicando no ícone disponível na área de trabalho. Em seguida, a tela principal do Veyon será exibida, conforme ilustrado na figura abaixo.</p>
+            
+            <figure>
+                <img src="img/01.png" alt="Interface do Veyon">
+                <figcaption>Figura 1.1: Interface do Veyon</figcaption>
+            </figure>
+
+            <p>A interface do Veyon Master é projetada para ser simples de usar, tanto no Windows quanto no Linux. O Veyon possui um menu superior com as principais funcionalidades que permitem o monitoramento e gerenciamento dos computadores da sala de aula.</p>
+
+            <h3>1.1 Menu superior do Veyon</h3>
+            <figure>
+                <img src="img/02.png" alt="Menu superior do Veyon Master">
+                <figcaption>Figura 1.2: Menu Superior do Veyon</figcaption>
+            </figure>
+            <div class="feature-list">
+                <div class="feature-item"><strong>Monitoramento:</strong> Modo padrão que permite o monitoramento de todos os computadores de cada sala de aula. O Veyon permite monitorar e gerenciar várias salas ao mesmo tempo.</div>
+                <div class="feature-item"><strong>Exibir em tela cheia:</strong> Exibe a tela da máquina do professor em todos os computadores da sala de aula em modo de tela cheia, desativando os dispositivos de entrada dos alunos.</div>
+                <div class="feature-item"><strong>Exibir em janela:</strong> Exibe a tela da máquina do professor em todos os computadores da sala de aula em modo de janela, permitindo que o aluno use o computador para outras tarefas.</div>
+                <div class="feature-item"><strong>Bloquear computador:</strong> Bloqueia todos os computadores da sala para chamar a atenção dos alunos. Os dispositivos de entrada são bloqueados e as telas são desligadas.</div>
+                <div class="feature-item"><strong>Exibir tela:</strong> Monitora um computador específico na sala de aula, sem interação.</div>
+                <div class="feature-item"><strong>Controlar remotamente:</strong> Permite ao professor realizar alterações no computador (por exemplo, instalar um programa) ou ajudar um aluno a realizar uma tarefa.</div>
+                <div class="feature-item"><strong>Ligar:</strong> Liga todos os computadores de uma sala remotamente (requer Wake-on-LAN ativado).</div>
+                <div class="feature-item"><strong>Reiniciar:</strong> Reinicia todos os computadores de uma sala remotamente.</div>
+                <div class="feature-item"><strong>Desligar:</strong> Desliga todos os computadores de uma sala remotamente.</div>
+                <div class="feature-item"><strong>Log in:</strong> Realiza login com um usuário específico em todos os computadores de uma sala (útil em salas compartilhadas).</div>
+                <div class="feature-item"><strong>Log off:</strong> Realiza logoff em todos os computadores de uma sala.</div>
+                <div class="feature-item"><strong>Mensagem de texto:</strong> Envia uma mensagem de texto para todos os computadores de uma sala.</div>
+                <div class="feature-item"><strong>Executar programa:</strong> Executa um programa em todos os computadores de uma sala.</div>
+                <div class="feature-item"><strong>Abrir website:</strong> Abre um site em todos os computadores de uma sala.</div>
+                <div class="feature-item"><strong>Transferência de arquivo:</strong> Envia um arquivo para todos os computadores de uma sala.</div>
+                <div class="feature-item"><strong>Captura de tela:</strong> Tira um print da tela de um ou mais computadores.</div>
+            </div>
+
+            <h3>1.2 Menu inferior do Veyon Master</h3>
+            <figure>
+                <img src="img/03.png" alt="Menu inferior do Veyon Master">
+                <figcaption>Figura 1.3: Menu Inferior do Veyon</figcaption>
+            </figure>
+            <ul>
+                <li><strong>1 - Lista de salas/computadores:</strong> Onde se encontra a lista de salas e computadores adicionados ao Veyon.</li>
+                <li><strong>2 - Capturas de tela:</strong> Onde se encontram as capturas de tela.</li>
+                <li><strong>3 - Área de busca:</strong> Utilizada para buscar computadores por nome ou IP, útil em ambientes com muitos computadores.</li>
+                <li><strong>4 - Mostrar somente os computadores ligados:</strong> Filtra a exibição para mostrar apenas os computadores que estão ligados.</li>
+                <li><strong>5 - Barra de Zoom:</strong> Usada para ampliar ou diminuir o tamanho das miniaturas dos computadores.</li>
+                <li><strong>6 - Customizar o arranjo:</strong> Permite customizar o arranjo das miniaturas dos computadores.</li>
+            </ul>
+        </div>
+    </div>
+    <button class="scroll-top" onclick="scrollToTop()">↑</button>
+    <script>
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+        
+        // Add smooth scrolling to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add loading animation to images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    </script>
+</body>
+</html>
+
